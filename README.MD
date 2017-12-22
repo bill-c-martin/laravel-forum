@@ -8,7 +8,7 @@
    3. `cd Homestead`
    4. `bash init.sh`
 4. Configure laravel-forum site in Homestead:
-   1. In `~/projects/Homestead/Homestead.yaml`, change:
+   1. In `~/projects/Homestead/Homestead.yaml`, change this:
 
 ```
 folders:
@@ -20,7 +20,7 @@ sites:
       to: /home/vagrant/code/public
 ```
 
-   2. to: 
+to this: 
 
 ```
 folders:
