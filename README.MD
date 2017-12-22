@@ -9,6 +9,7 @@
    4. `bash init.sh`
 4. Configure laravel-forum site in Homestead:
    1. In `~/projects/Homestead/Homestead.yaml`, change:
+
 ```folders:
     - map: ~/code
       to: /home/vagrant/code
