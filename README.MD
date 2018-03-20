@@ -14,7 +14,7 @@ folders:
 
 sites:
     - map: forum.local
-      to: /home/vagrant/projects/laravel-forum
+      to: /home/vagrant/projects/laravel-forum/public
 ```
 5. Bootup homestead with `vagrant up`
 6. Add `127.0.0.1 forum.local` into `/etc/hosts` file
