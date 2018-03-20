@@ -6,6 +6,16 @@
    2. `git clone https://github.com/laravel/homestead.git Homestead`
    3. `cd Homestead`
    4. `bash init.sh`
-3. Bootup homestead with `vagrant up`
-4. Add `127.0.0.1 homestead.test` into `/etc/hosts` file
-5. Verify localhost app loads on `http://homestead.test:8000`
+4. Add to Homestead.yaml:
+```
+folders:
+    - map: ~/projects/laravel-forum
+      to: /home/vagrant/projects/laravel-forum
+
+sites:
+    - map: forum.local
+      to: /home/vagrant/projects/laravel-forum
+```
+5. Bootup homestead with `vagrant up`
+6. Add `127.0.0.1 forum.local` into `/etc/hosts` file
+7. Verify localhost app loads on `http://forum.local:8000`
