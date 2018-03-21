@@ -9,11 +9,26 @@ class ThreadsTest extends TestCase
 {
     use DatabaseMigrations;
 
-    /** @test */
-    public function a_user_can_browse_threads()
+    protected function createThread()
     {
-        $response = $this->get('/threads');
+        return factory('App\Thread')->create();
+    }
 
-        $response->assertStatus(200);
+    /** @test */
+    public function a_user_can_view_all_threads()
+    {
+        $thread = $this->createThread();
+
+        $response = $this->get('/threads');
+        $response->assertSee($thread->title);
+    }
+
+    /** @test */
+    public function a_user_can_read_a_single_therad()
+    {
+        $thread = $this->createThread();
+
+        $response = $this->get('/threads/' . $thread->id);
+        $response->assertSee($thread->title);
     }
 }
