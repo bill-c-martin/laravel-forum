@@ -12,7 +12,15 @@ class ParticipateInForumTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function an_authenticated_user_may_particpate_in_forum_threads()
+    public function an_unauthenticated_user_cannot_add_replies_to_threads()
+    {
+        $this->expectException('Illuminate\Auth\AuthenticationException');
+
+        $this->post('/threads/1/replies', []);
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_add_replies_to_threads()
     {
         // Given we have an auth user
         $user = factory('App\User')->create();
@@ -22,7 +30,7 @@ class ParticipateInForumTest extends TestCase
         $thread = factory('App\Thread')->create();
 
         // When the user adds a reply to the thread
-        $reply = factory('App\Reply')->create();
+        $reply = factory('App\Reply')->make();
         $this->post('/threads/'.$thread->id.'/replies', $reply->toArray());
 
         // Then their reply should be visible on the page
