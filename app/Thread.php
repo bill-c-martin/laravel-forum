@@ -25,4 +25,9 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function creatorName()
+    {
+        return $this->creator->name;
+    }
 }
