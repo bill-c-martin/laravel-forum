@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
+    protected $guarded = [];
+
     /**
      * Replies to this thread
      *
@@ -29,5 +31,10 @@ class Thread extends Model
     public function creatorName()
     {
         return $this->creator->name;
+    }
+
+    public function addReply($reply)
+    {
+        $this->replies()->create($reply);
     }
 }
