@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ParticipateInForumTest extends TestCase
+class ReplyThreadsTest extends TestCase
 {
     use DatabaseMigrations;
 
