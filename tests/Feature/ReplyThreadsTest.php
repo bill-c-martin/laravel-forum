@@ -23,8 +23,7 @@ class ReplyThreadsTest extends TestCase
     public function an_authenticated_user_can_add_replies_to_threads()
     {
         // Given we have an auth user
-        $user = create('App\User');
-        $this->signIn($user);
+        $this->signIn();
 
         // And an existing thread
         $thread = create('App\Thread');
