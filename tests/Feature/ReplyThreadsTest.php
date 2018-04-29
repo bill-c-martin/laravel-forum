@@ -23,14 +23,14 @@ class ReplyThreadsTest extends TestCase
     public function an_authenticated_user_can_add_replies_to_threads()
     {
         // Given we have an auth user
-        $user = factory('App\User')->create();
+        $user = create('App\User');
         $this->signIn($user);
 
         // And an existing thread
-        $thread = factory('App\Thread')->create();
+        $thread = create('App\Thread');
 
         // When the user adds a reply to the thread
-        $reply = factory('App\Reply')->make();
+        $reply = make('App\Reply');
         $this->post('/threads/'.$thread->id.'/replies', $reply->toArray());
 
         // Then their reply should be visible on the page
