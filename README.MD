@@ -1,3 +1,16 @@
+## Overview
+
+This is a fully-featured forum built during taking the ~20 hour [Let's Build A Forum with Laravel and TDD](https://laracasts.com/series/lets-build-a-forum-with-laravel) course, for fun, because why not.
+
+## Software/Library Stack
+
+- PHP 7.1
+- MySQL 5.7
+- Ubuntu 16.04 in Laravel Homestead / Vagrant
+- Laravel 5.6 
+- phpunit 7.0
+- Vue.js
+
 ## Localhost Setup
 
 1. Clone this repo to `~/projects/laravel-forum/`
