@@ -8,6 +8,6 @@ $factory->define(App\Thread::class, function(Faker $faker){
             return factory('App\User')->create()->id;
         },
         'title' => $faker->sentence,
-        'body' => $faker->paragraph
+        'body' => $faker->paragraph(3)
     ];
 });
