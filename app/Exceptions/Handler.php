@@ -48,9 +48,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        // Throw exception for routes that don't exist, useful for phpunit testing
-        if(app()->environment() === 'testing') throw $exception;
-
         return parent::render($request, $exception);
     }
 }
