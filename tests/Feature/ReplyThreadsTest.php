@@ -16,7 +16,7 @@ class ReplyThreadsTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $this->post('/threads/1/replies', []);
+        $this->post(route('replies.store', 1), []);
     }
 
     /** @test */
@@ -30,10 +30,13 @@ class ReplyThreadsTest extends TestCase
 
         // When the user adds a reply to the thread
         $reply = make('App\Reply');
-        $this->post('/threads/'.$thread->id.'/replies', $reply->toArray());
+        $this->post(
+            route('replies.store', $thread->id),
+            $reply->toArray()
+        );
 
         // Then their reply should be visible on the page
-        $this->get('/threads/' . $thread->id)
+        $this->get(route('threads.show', $thread->id))
             ->assertSee($reply->body);
     }
 }

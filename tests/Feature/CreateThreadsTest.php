@@ -16,8 +16,8 @@ class CreateThreadsTest extends TestCase
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
         // When they create a thread
-        $thread = make('App\Thread');
-        $this->post('/threads', $thread->toArray());
+        $thread = create('App\Thread');
+        $this->post(route('threads.store'), $thread->toArray());
 
         // Then an exception occurs preventing guests from creating threads
     }
@@ -29,11 +29,11 @@ class CreateThreadsTest extends TestCase
         $this->signIn();
 
         // When the user creates a thread
-        $thread = make('App\Thread');
-        $this->post('/threads', $thread->toArray());
+        $thread = create('App\Thread');
+        $this->post(route('threads.store', $thread->toArray()));
 
         // Then their thread is visible on the page
-        $this->get('/threads/'.$thread->id)
+        $this->get(route('threads.show', $thread->id))
             ->assertSee($thread->title)
             ->assertSee($thread->body);
     }

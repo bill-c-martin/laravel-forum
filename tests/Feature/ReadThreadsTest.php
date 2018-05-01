@@ -22,7 +22,7 @@ class ReadThreadsTest extends TestCase
     public function a_user_can_view_all_threads()
     {
         // When all threads are viewed, then we can see the thread titles
-        $this->get('/threads')
+        $this->get(route('threads.index'))
             ->assertSee($this->thread->title);
     }
 
@@ -30,7 +30,7 @@ class ReadThreadsTest extends TestCase
     public function a_user_can_read_a_single_thread()
     {
         // When a thread is viewed, then we can see the thread content
-        $this->get('/threads/' . $this->thread->id)
+        $this->get(route('threads.show', $this->thread->id))
             ->assertSee($this->thread->title);
     }
 
@@ -41,7 +41,7 @@ class ReadThreadsTest extends TestCase
         $reply = create('App\Reply', ['thread_id' => $this->thread->id]);
 
         // Then we can see the reply
-        $this->get('/threads/' . $this->thread->id)
+        $this->get(route('threads.show', $this->thread->id))
             ->assertSee($reply->body);
     }
 }

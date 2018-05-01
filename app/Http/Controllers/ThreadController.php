@@ -52,7 +52,7 @@ class ThreadController extends Controller
             'body' => request('body'),
         ]);
 
-        return redirect('/threads/'.$thread->id);
+        return redirect(route('threads.show',$thread->id));
     }
 
     /**
