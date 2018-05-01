@@ -16,7 +16,13 @@ class ReplyThreadsTest extends TestCase
     {
         $this->expectException('Illuminate\Auth\AuthenticationException');
 
-        $this->post(route('replies.store', 1), []);
+        $dummy_thread_id = $dummy_channel_id = 1;
+        $dummy_reply = [];
+
+        $this->post(
+            route('replies.store', [$dummy_channel_id, $dummy_thread_id]),
+            $dummy_reply
+        );
     }
 
     /** @test */
@@ -29,9 +35,9 @@ class ReplyThreadsTest extends TestCase
         $thread = create('App\Thread');
 
         // When the user adds a reply to the thread
-        $reply = make('App\Reply');
+        $reply = create('App\Reply');
         $this->post(
-            route('replies.store', $thread->id),
+            route('replies.store', [$thread->channel->id, $thread->id]),
             $reply->toArray()
         );
 
