@@ -24,7 +24,7 @@ class ReplyThreadsTest extends TestCase
         $reply = create('App\Reply');
 
         $this->post(
-            route('replies.store', [$thread->channel->id, $thread->id]),
+            route('replies.store', [$thread->channel->slug, $thread->id]),
             $reply->toArray()
         );
 
@@ -44,12 +44,12 @@ class ReplyThreadsTest extends TestCase
         $reply = create('App\Reply');
 
         $this->post(
-            route('replies.store', [$thread->channel->id, $thread->id]),
+            route('replies.store', [$thread->channel->slug, $thread->id]),
             $reply->toArray()
         );
 
         // Then their reply should be visible on the page
-        $this->get( route( 'threads.show', [$thread->channel->id, $thread->id] ) )
+        $this->get( route( 'threads.show', [$thread->channel->slug, $thread->id] ) )
             ->assertSee($reply->body);
     }
 }

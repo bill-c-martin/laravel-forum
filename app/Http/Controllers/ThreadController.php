@@ -57,7 +57,7 @@ class ThreadController extends Controller
             'body' => request('body'),
         ]);
 
-        return redirect()->route('threads.show', [$thread->channel->id, $thread->id]);
+        return redirect()->route('threads.show', [$thread->channel->slug, $thread->id]);
     }
 
     /**
