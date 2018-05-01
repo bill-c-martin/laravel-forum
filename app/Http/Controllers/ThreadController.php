@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Thread;
 use Illuminate\Http\Request;
 
+/**
+ * Class ThreadController
+ *
+ * @package App\Http\Controllers
+ */
 class ThreadController extends Controller
 {
     /**
@@ -52,16 +57,17 @@ class ThreadController extends Controller
             'body' => request('body'),
         ]);
 
-        return redirect(route('threads.show',$thread->id));
+        return redirect()->route('threads.show', [$thread->channel->id, $thread->id]);
     }
 
     /**
      * Display the specified resource.
      *
+     * @param  int $channelId
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function show(Thread $thread)
+    public function show(int $channelId, Thread $thread)
     {
         return view('threads.show', compact('thread'));
     }

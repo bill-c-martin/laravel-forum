@@ -30,10 +30,11 @@ class CreateThreadsTest extends TestCase
 
         // When the user creates a thread
         $thread = create('App\Thread');
-        $this->post(route('threads.store', $thread->toArray()));
+
+        $this->post(route('threads.store'), $thread->toArray());
 
         // Then their thread is visible on the page
-        $this->get(route('threads.show', $thread->id))
+        $this->get( route('threads.show', [$thread->channel->id, $thread->id] ) )
             ->assertSee($thread->title)
             ->assertSee($thread->body);
     }

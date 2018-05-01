@@ -36,7 +36,7 @@ class ReplyThreadsTest extends TestCase
         );
 
         // Then their reply should be visible on the page
-        $this->get(route('threads.show', $thread->id))
+        $this->get( route( 'threads.show', [$thread->channel->id, $thread->id] ) )
             ->assertSee($reply->body);
     }
 }
