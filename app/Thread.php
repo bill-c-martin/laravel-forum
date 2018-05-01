@@ -28,12 +28,32 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function creatorName()
+    /**
+     * The channel that the thread belongs to
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function channel()
+    {
+        return $this->belongsTo(Channel::class);
+    }
+
+    /**
+     * Returns the thread creator's name
+     *
+     * @return string
+     */
+    public function creatorName(): string
     {
         return $this->creator->name;
     }
 
-    public function addReply($reply)
+    /**
+     * Adds a reply to this thread
+     *
+     * @param array $reply ['body'=>, 'user_id'=>]
+     */
+    public function addReply(array $reply)
     {
         $this->replies()->create($reply);
     }
