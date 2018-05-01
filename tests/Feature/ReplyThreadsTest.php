@@ -15,20 +15,19 @@ class ReplyThreadsTest extends TestCase
     public function an_unauthenticated_user_cannot_add_replies_to_threads()
     {
         // Given we have an unauthenticated user
-        $this->expectException('Illuminate\Auth\AuthenticationException');
-
         // And an existing thread
         $thread = create('App\Thread');
 
         // When the user adds a reply to the thread
         $reply = create('App\Reply');
 
-        $this->post(
-            route('replies.store', [$thread->channel->slug, $thread->id]),
-            $reply->toArray()
-        );
-
-        // Then an exception should be thrown
+        // Then the guest is redirected to the login page
+        $this->withExceptionHandling()
+            ->post(
+                route('replies.store', [$thread->channel->id, $thread->id]),
+                $reply->toArray()
+            )
+            ->assertRedirect('/login');
     }
 
     /** @test */
@@ -44,7 +43,7 @@ class ReplyThreadsTest extends TestCase
         $reply = create('App\Reply');
 
         $this->post(
-            route('replies.store', [$thread->channel->slug, $thread->id]),
+            route('replies.store', [$thread->channel->id, $thread->id]),
             $reply->toArray()
         );
 
