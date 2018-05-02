@@ -62,7 +62,7 @@ class ReplyThreadsTest extends TestCase
         $thread = create('App\Thread');
 
         // When the user adds a reply to the thread without a body
-        $reply = create('App\Reply', ['body' => null]);
+        $reply = make('App\Reply', ['body' => null]);
 
         // Then an error should be thrown
         $this->post(
