@@ -51,4 +51,24 @@ class ReplyThreadsTest extends TestCase
         $this->get( route( 'threads.show', [$thread->channel->slug, $thread->id] ) )
             ->assertSee($reply->body);
     }
+
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        // Given we have an authenticated user
+        $this->withExceptionHandling()->signIn();
+
+        // And an existing thread
+        $thread = create('App\Thread');
+
+        // When the user adds a reply to the thread without a body
+        $reply = create('App\Reply', ['body' => null]);
+
+        // Then an error should be thrown
+        $this->post(
+            route('replies.store', [$thread->channel->id, $thread->id]),
+            $reply->toArray()
+        )
+        ->assertSessionHasErrors('body');
+    }
 }

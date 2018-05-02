@@ -17,4 +17,10 @@ class ReplyTest extends TestCase
 
         $this->assertInstanceOf('App\User', $reply->owner);
     }
+
+    /** @test */
+    public function it_must_has_a_body()
+    {
+        $reply = create('App\Reply', ['body' => null]);
+    }
 }
